@@ -55,7 +55,7 @@ export class MemesController {
 
   async getMemeByID(id) {
     try {
-      const meme = await memesService.getMeme(id)
+      const meme = await memesService.getMemeByID(id)
 
     } catch (error) {
       console.error("[GetMemebyID]", error);

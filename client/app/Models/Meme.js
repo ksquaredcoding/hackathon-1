@@ -31,10 +31,7 @@ export class Meme {
             <span>${this.bros} - <i onclick="app.memesController.bro('${this.id}')" class="selectable" title="Upvote">👍</i></span>
             <span>${this.hater} - <i onclick="app.memesController.hater('${this.id}')" class="selectable" title="Downvote">👎</i></span>
             <span>
-              <img
-                title="${this.creator.description}"
-                src="${this.creator.picture}"
-                alt="${this.creator.description}" class="img-fluid rounded picture">
+              <i class="mdi mdi-delete-circle fs-3" onclick="app.memesController.deleteMeme('${this.id}')"></i>
             </span>
           </div>
         </div>
