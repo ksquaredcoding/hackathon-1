@@ -18,9 +18,8 @@ export class Meme {
     return/*html*/`
       <div class="col-md-4 mb-3">
       <div class="card">
-        <img
-        onclick="app.memesController.getMemeById('${this.id}')"
-        data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+        <img data-bs-toggle="modal" data-bs-target="#activeMemeModal"
+        onclick="app.memesController.getActiveMeme('${this.id}')"
           src="${this.image}"
           alt="${this.description}" class="img-fluid rounded-top meme-img selectable" title="${this.description}">
         <div class="card-body">

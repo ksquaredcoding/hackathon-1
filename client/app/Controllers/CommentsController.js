@@ -1,10 +1,16 @@
+import { appState } from "../AppState.js";
 import { commentsService } from "../Services/CommentsService.js";
 import { Pop } from "../Utils/Pop.js";
+import { setHTML } from "../Utils/Writer.js";
 
-
+function _drawActiveMeme() {
+  if (appState.activeMeme == null) { return }
+  setHTML('activeMeme', appState.activeMeme.ActiveMemeTemplate)
+  setHTML('comments', appState.activeMeme.CommentTemplate)
+}
 export class CommentsController {
   constructor() {
-
+    appState.on('activeMeme', _drawActiveMeme)
   }
 
 
