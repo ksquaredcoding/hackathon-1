@@ -5,24 +5,25 @@ import { BadRequest } from "../utils/Errors.js";
 
 export class InteractionsController extends BaseController {
   constructor() {
-    super('/api/interactions')
+    super('/api/interactions/memes')
     this.router
-      .get('/memes/comments', this.getComments)
-      .get('/memes/bros', this.getBros)
-      .get('/memes/haters', this.getHaters)
+      .get('/comments', this.getComments)
+      .get('/bros', this.getBros)
+      .get('/haters', this.getHaters)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('/memes/:memeId/bros', this.beABro)
-      .post('/memes/:memeId/haters', this.beHatin)
-      .delete('/memes/haters/:hateId', this.removeHate)
-      .delete('/memes/bros/:broId', this.removeBro)
+      // SECTION Meme Bro & Hate Requests
+      .post('/:memeId/bros', this.beABro)
+      .post('/:memeId/haters', this.beHatin)
+      .delete('/haters/:hateId', this.removeHate)
+      .delete('/bros/:broId', this.removeBro)
       // SECTION Comment Requests
-      .post('/memes/comments', this.addComment)
-      .delete('/memes/comments/:commentId', this.deleteComment)
+      .post('/comments', this.addComment)
+      .delete('/comments/:commentId', this.deleteComment)
       //  STUB Comment Hater&Bro Requests
-      .post('/memes/comments/commenthaters', this.hateComment)
-      .post('/memes/comments/commentbros', this.broComment)
-      .delete('/memes/comments/commenthaters/:commentHateId', this.deleteCommentHate)
-      .delete('/memes/comments/commentbros/:commentBroId', this.deleteCommentBro)
+      .post('/comments/commenthaters', this.hateComment)
+      .post('/comments/commentbros', this.broComment)
+      .delete('/comments/commenthaters/:commentHateId', this.deleteCommentHate)
+      .delete('/comments/commentbros/:commentBroId', this.deleteCommentBro)
 
   }
 
@@ -94,11 +95,8 @@ export class InteractionsController extends BaseController {
   }
   async addComment(req, res, next) {
     try {
-      const formData = {
-        commenterId: req.userInfo.id,
-        memeId: req.body.memeId
-      }
-      const comment = await interactionsService.addComment(formData)
+      req.body.commenterId = req.userInfo.id
+      const comment = await interactionsService.addComment(req.body)
       res.send(comment)
     } catch (error) {
       next(error)

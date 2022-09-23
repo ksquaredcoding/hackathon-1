@@ -59,9 +59,10 @@ class InteractionsService {
     await comment.remove()
     return comment
   }
-  async addComment(formData) {
-    const comment = await dbContext.Comments.create(formData)
-    await comment.populate('meme')
+  async addComment(body) {
+    const comment = await dbContext.Comments.create(body)
+    await comment.populate('memeComment')
+    await comment.populate('commenter', 'name')
     return comment
   }
   async getComments(query = {}) {
