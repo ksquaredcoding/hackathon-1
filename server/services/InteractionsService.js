@@ -2,16 +2,27 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
 
 class InteractionsService {
-  removedHate(hateId, userInfo) {
-    const removedHate = await dbContext.Haters.findById(ha)
+  async removedHate(hateId, userInfo) {
+    // const hater = await dbContext.Haters.filter(h => h.id == userInfo.id)
+    const removedHate = await dbContext.Haters.findById(hateId)
+    if (!removedHate) { throw new BadRequest('This Hate doesnt exist...') }
+    if (userInfo.id !== removedHate.haterId.toString()) {
+      throw new Forbidden("This isn't your hate!!")
+    }
+    await removedHate.remove()
+    return removedHate
   }
-  removedBro(broId, userInfo) {
-
+  async removedBro(brroId, userInfo) {
+    const removedBro = await dbContext.Bros.findById(brroId)
+    if (!removedBro) { throw new BadRequest('This Bro doesnt exist...') }
+    if (userInfo.id !== removedBro.broId.toString()) { throw new Forbidden("Yo this isnt for you to unBro!") }
+    await removedBro.remove()
+    return removedBro
   }
 
   async deleteCommentBro(commentBroId, userInfo) {
     const deletedBro = await dbContext.CommentBros.findById(commentBroId)
-    if (userInfo.id != deletedBro.commentBroId) { throw new BadRequest("Can't stop liking what isnt there") }
+    if (!deletedBro) { throw new BadRequest("Can't stop liking what isnt there") }
     if (userInfo.id != deletedBro.commentBroId.toString()) {
       throw new Forbidden("You didnt like this comment!!")
     }
