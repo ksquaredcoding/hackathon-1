@@ -67,7 +67,7 @@ class InteractionsService {
   }
   async getComments(query = {}) {
     const comments = await dbContext.Comments.find(query)
-      .populate('meme').populate('commentHaters').populate('commentBros')
+      .populate('memeComment').populate('commentHaters').populate('commentBros')
     return comments
   }
   async beABro(formData) {

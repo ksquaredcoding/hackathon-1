@@ -25,14 +25,14 @@ CommentSchema.virtual('memeComment', {
   ref: 'Meme'
 })
 
-CommentSchema.virtual('commentHater', {
+CommentSchema.virtual('commentHaters', {
   localField: '_id',
   foreignField: 'commentId',
   count: true,
   ref: 'Hater'
 })
 
-CommentSchema.virtual('commentBro', {
+CommentSchema.virtual('commentBros', {
   localField: '_id',
   foreignField: 'commentId',
   count: true,
