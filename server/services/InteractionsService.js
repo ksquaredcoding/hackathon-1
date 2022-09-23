@@ -3,7 +3,7 @@ import { BadRequest, Forbidden } from '../utils/Errors'
 
 class InteractionsService {
   removedHate(hateId, userInfo) {
-
+    const removedHate = await dbContext.Haters.findById(ha)
   }
   removedBro(broId, userInfo) {
 
@@ -15,6 +15,8 @@ class InteractionsService {
     if (userInfo.id != deletedBro.commentBroId.toString()) {
       throw new Forbidden("You didnt like this comment!!")
     }
+    await deletedBro.remove()
+    return deletedBro
   }
   async deleteCommentHate(commentHateId, userInfo) {
     const deletedHate = await dbContext.CommentHaters.findById(commentHateId)
