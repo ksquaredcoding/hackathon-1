@@ -5,24 +5,24 @@ import { BadRequest } from "../utils/Errors.js";
 
 export class InteractionsController extends BaseController {
   constructor() {
-    super('/api/memes')
+    super('/api')
     this.router
-      .get('/comments', this.getComments)
-      .get('/bros', this.getBros)
-      .get('/haters', this.getHaters)
+      .get('/memes/comments', this.getComments)
+      .get('/memes/bros', this.getBros)
+      .get('/memes/haters', this.getHaters)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('/:memeId/bros', this.beABro)
-      .post('/:memeId/haters', this.beHatin)
-      .delete('/haters/:hateId', this.removeHate)
-      .delete('/bros/:broId', this.removeBro)
+      .post('/memes/:memeId/bros', this.beABro)
+      .post('/memes/:memeId/haters', this.beHatin)
+      .delete('/memes/haters/:hateId', this.removeHate)
+      .delete('/memes/bros/:broId', this.removeBro)
       // SECTION Comment Requests
-      .post('/comments', this.addComment)
-      .delete('/comments/:commentId', this.deleteComment)
+      .post('/memes/comments', this.addComment)
+      .delete('/memes/comments/:commentId', this.deleteComment)
       //  STUB Comment Hater&Bro Requests
-      .post('/comments/commenthaters', this.hateComment)
-      .post('/comments/commentbros', this.broComment)
-      .delete('/comments/commenthaters/:commentHateId', this.deleteCommentHate)
-      .delete('/comments/commentbros/:commentBroId', this.deleteCommentBro)
+      .post('/memes/comments/commenthaters', this.hateComment)
+      .post('/memes/comments/commentbros', this.broComment)
+      .delete('/memes/comments/commenthaters/:commentHateId', this.deleteCommentHate)
+      .delete('/memes/comments/commentbros/:commentBroId', this.deleteCommentBro)
 
   }
 
