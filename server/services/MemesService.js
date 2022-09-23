@@ -12,12 +12,12 @@ class MemesService {
     return madeMeme
   }
   async getMemeById(memeId) {
-    const meme = await dbContext.Memes.findById(memeId)
+    const meme = await dbContext.Memes.findById(memeId).populate('creator', 'name picture').populate('haters').populate('bros')
     if (!meme) { throw new BadRequest('There is no such meme... Bad ID') }
     return meme
   }
   async getAllMemes() {
-    const memes = await dbContext.Memes.find()
+    const memes = await dbContext.Memes.find().populate('creator', 'name picture').populate('haters').populate('bros')
     return memes
   }
 
