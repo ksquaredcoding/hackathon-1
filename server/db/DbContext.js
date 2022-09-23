@@ -13,8 +13,8 @@ class DbContext {
   Haters = mongoose.model('Hater', HaterSchema);
   Bros = mongoose.model('Bro', HaterSchema);
   Comments = mongoose.model('Comment', CommentSchema);
-  CommentHaters = mongoose.model('Hater', CommentHaterSchema)
-  CommentBros = mongoose.model('Bro', CommentBroSchema)
+  CommentHaters = mongoose.model('CommentHater', CommentHaterSchema)
+  CommentBros = mongoose.model('CommentBro', CommentBroSchema)
 }
 
 export const dbContext = new DbContext()
