@@ -5,7 +5,7 @@ import { BadRequest } from "../utils/Errors.js";
 
 export class InteractionsController extends BaseController {
   constructor() {
-    super('/api')
+    super('/api/interactions')
     this.router
       .get('/memes/comments', this.getComments)
       .get('/memes/bros', this.getBros)
