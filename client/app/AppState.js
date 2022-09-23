@@ -16,6 +16,14 @@ class AppState extends EventEmitter {
   /** @type {import('./Models/ActiveMeme').ActiveMeme|null} */
   activeMeme = null
 
+  /** @type {import('./Models/Comment').Comment|null} */
+  comments = null
+
+  haters = 0
+  bros = 0
+
+
+
 }
 
 export const appState = new Proxy(new AppState(), {

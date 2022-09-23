@@ -1,12 +1,15 @@
 import { appState } from "../AppState.js";
 import { commentsService } from "../Services/CommentsService.js";
+import { getFormData } from "../Utils/FormHandler.js";
 import { Pop } from "../Utils/Pop.js";
 import { setHTML } from "../Utils/Writer.js";
 
 function _drawActiveMeme() {
   if (appState.activeMeme == null) { return }
   setHTML('activeMeme', appState.activeMeme.ActiveMemeTemplate)
-  setHTML('comments', appState.activeMeme.CommentTemplate)
+  // if (appState.comments == null) { return }
+  // setHTML('comments', appState.comments.CommentTemplate)
+  // TODO draw +=template for comments
 }
 export class CommentsController {
   constructor() {
@@ -16,9 +19,19 @@ export class CommentsController {
 
 
 
-  async addComment(id) {
+  async addComment(memeId) {
     try {
-      const comment = await commentsService.addComment(id)
+      // @ts-ignore
+      window.event.preventDefault()
+      // @ts-ignore
+      const form = window.event.target
+
+      const formData = getFormData(form)
+      const comment = await commentsService.addComment(memeId, formData)
+
+      // @ts-ignore
+      form.reset()
+
     } catch (error) {
       console.error("[AddComment]", error);
       Pop.error(error)

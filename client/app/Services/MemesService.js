@@ -30,12 +30,18 @@ class MemesService {
   }
   async hater(memeId) {
     Pop.success("You're a Hater")
-    const res = await server.post(`api/memes/${memeId}/haters`,)
-    console.log(res.data);
+    const res = await server.post(`api/interactions/memes/${memeId}/haters`)
+    console.log('hater post', res.data);
+    // appState.emit('memes')
+    // @ts-ignore
+    appState.haters = res.data
+    // console.log('appstate', appState.haters);
   }
   async bro(memeId) {
     Pop.success("You're a Bro")
-    const res = await server.post(`api/memes/${memeId}/bros`)
+    const res = await server.post(`api/interactions/memes/${memeId}/bros`)
+    // appState.emit('memes')
+    appState.bros = res.data
   }
 
 }

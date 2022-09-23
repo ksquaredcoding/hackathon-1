@@ -16,6 +16,9 @@ export class MemesController {
   constructor() {
     this.getMemes()
     appState.on('memes', _drawMemes)
+    appState.on('haters', this.getMemes)
+    appState.on('bros', this.getMemes)
+
   }
 
   async addMeme() {

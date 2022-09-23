@@ -6,7 +6,7 @@ export class Meme {
     this.image = data.image
     this.id = data.id
     this.bros = data.bros || 0
-    this.hater = data.hater || 0
+    this.haters = data.haters || 0
 
     // TODO need Creator data
 
@@ -28,7 +28,7 @@ export class Meme {
         <div class="card-footer">
           <div class="d-flex justify-content-between">
             <span>${this.bros} - <i onclick="app.memesController.bro('${this.id}')" class="selectable" title="Upvote">👍</i></span>
-            <span>${this.hater} - <i onclick="app.memesController.hater('${this.id}')" class="selectable" title="Downvote">👎</i></span>
+            <span>${this.haters} - <i onclick="app.memesController.hater('${this.id}')" class="selectable" title="Downvote">👎</i></span>
             <span>
               <i class="mdi mdi-delete-circle fs-3" onclick="app.memesController.deleteMeme('${this.id}')"></i>
             </span>
