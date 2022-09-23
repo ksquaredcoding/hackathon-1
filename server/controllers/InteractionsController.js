@@ -17,7 +17,7 @@ export class InteractionsController extends BaseController {
       .get('/haters', this.getHaters)
       .get('/bros', this.getBros)
       .delete('/comments/:commentId', this.deleteComment)
-      .delete('/comments')
+      .delete('/comments/commenthaters')
   }
   async broComment(req, res, next) {
     try {

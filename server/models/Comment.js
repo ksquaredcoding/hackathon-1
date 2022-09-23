@@ -4,7 +4,7 @@ const ObjectId = mongoose.Types.ObjectId
 
 export const CommentSchema = new Schema(
   {
-    description: { type: String, required: true, maxlength: 200 },
+    contents: { type: String, required: true, maxlength: 200 },
     commenterId: { type: ObjectId, ref: 'Account', required: true },
     memeId: { type: ObjectId, ref: 'Meme', required: true }
   },
