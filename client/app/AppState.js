@@ -13,8 +13,8 @@ class AppState extends EventEmitter {
 
   /** @type {import('./Models/Meme').Meme[]} */
   memes = []
-  /** @type {import('./Models/ActiveMeme').ActiveMeme[]} */
-  activeMeme = []
+  /** @type {import('./Models/ActiveMeme').ActiveMeme|null} */
+  activeMeme = null
 
 }
 

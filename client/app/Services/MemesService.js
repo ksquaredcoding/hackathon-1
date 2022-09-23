@@ -23,15 +23,20 @@ class MemesService {
     const res = await server.get('api/memes')
     appState.memes = res.data.map(m => new Meme(m))
   }
-  async getMemeByID(id) {
+  async getActiveMeme(id) {
     const res = await server.get(`api/memes/${id}`)
-    appState.activeMeme = res.data.map(m => new ActiveMeme(m))
+    appState.activeMeme = new ActiveMeme(res.data)
+    console.log(appState.activeMeme);
   }
-  async hater(id) {
-    throw new Error("Method not implemented.");
+  async hater(memeId) {
+    Pop.success("You're a Hater")
+    const res = await server.post(`api/memes/${memeId}`, { memeId })
+
   }
-  async bro(id) {
-    throw new Error("Method not implemented.");
+  async bro(memeId) {
+    Pop.success("You're a Bro")
+    const res = await server.post(`api/memes/${memeId}`, { memeId })
+
   }
 
 }

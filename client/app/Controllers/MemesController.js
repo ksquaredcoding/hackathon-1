@@ -53,9 +53,9 @@ export class MemesController {
     }
   }
 
-  async getMemeByID(id) {
+  async getActiveMeme(id) {
     try {
-      const meme = await memesService.getMemeByID(id)
+      const meme = await memesService.getActiveMeme(id)
 
     } catch (error) {
       console.error("[GetMemebyID]", error);
@@ -66,7 +66,7 @@ export class MemesController {
 
   async bro(id) {
     try {
-      const meme = await memesService.bro(id)
+      await memesService.bro(id)
     } catch (error) {
       console.error("[Upvote]", error);
       Pop.error(error)
@@ -74,7 +74,7 @@ export class MemesController {
   }
   async hater(id) {
     try {
-      const meme = await memesService.hater(id)
+      await memesService.hater(id)
     } catch (error) {
       console.error("[DownVote]", error);
       Pop.error(error)
