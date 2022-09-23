@@ -4,8 +4,8 @@ class CommentsService {
   deleteComment(id) {
     throw new Error("Method not implemented.");
   }
-  addComment(id) {
-    throw new Error("Method not implemented.");
+  async addComment(id, formData) {
+    const res = await.server.post(`api/${id}/comments/`, formData)
   }
 
 }

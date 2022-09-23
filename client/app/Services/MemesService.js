@@ -30,13 +30,12 @@ class MemesService {
   }
   async hater(memeId) {
     Pop.success("You're a Hater")
-    const res = await server.post(`api/memes/${memeId}`, { memeId })
-
+    const res = await server.post(`api/memes/${memeId}/haters`,)
+    console.log(res.data);
   }
   async bro(memeId) {
     Pop.success("You're a Bro")
-    const res = await server.post(`api/memes/${memeId}`, { memeId })
-
+    const res = await server.post(`api/memes/${memeId}/bros`)
   }
 
 }
