@@ -1,6 +1,12 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
 class MemesService {
+  async beHatin(formData) {
+    const meme = await this.getMemeById(formData.memeId)
+    const hater = await dbContext.Haters.create(formData)
+    await hater.populate('meme')
+    await hater.populate('hater', 'name')
+  }
   async deleteMeme(memeId, userInfo) {
     const meme = await this.getMemeById(memeId)
     if (meme.creatorId !== userInfo.id) { throw new Forbidden("That ain't your meme!") }
