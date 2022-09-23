@@ -1,3 +1,4 @@
+import { server } from "./AxiosService.js";
 
 
 class CommentsService {
@@ -5,7 +6,7 @@ class CommentsService {
     throw new Error("Method not implemented.");
   }
   async addComment(id, formData) {
-    const res = await.server.post(`api/${id}/comments/`, formData)
+    const res = await server.post(`api/${id}/comments/`, formData)
   }
 
 }
