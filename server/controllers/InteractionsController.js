@@ -11,8 +11,8 @@ export class InteractionsController extends BaseController {
       .get('/bros', this.getBros)
       .get('/haters', this.getHaters)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('/bros', this.beABro)
-      .post('/haters', this.beHatin)
+      .post('/:memeId/bros', this.beABro)
+      .post('/:memeId/haters', this.beHatin)
       .delete('/haters/:hateId', this.removeHate)
       .delete('/bros/:broId', this.removeBro)
       // SECTION Comment Requests
@@ -119,7 +119,7 @@ export class InteractionsController extends BaseController {
     try {
       const formData = {
         haterId: req.userInfo.id,
-        memeId: req.body.memeId
+        memeId: req.params.memeId
       }
       const hater = await interactionsService.beHatin(formData)
       res.send(hater)
@@ -142,7 +142,7 @@ export class InteractionsController extends BaseController {
     try {
       const formData = {
         broId: req.userInfo.id,
-        memeId: req.body.memeId
+        memeId: req.params.memeId
       }
       const bro = await interactionsService.beABro(formData)
       res.send(bro)
