@@ -22,19 +22,19 @@ export class Meme {
         onclick="app.memesController.getMemeById('${this.id}')"
         data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
           src="${this.image}"
-          alt="${this.description}" class="img-fluid rounded-top meme-img selectable" title="Peep the creeps">
+          alt="${this.description}" class="img-fluid rounded-top meme-img selectable" title="${this.description}">
         <div class="card-body">
           <h4 class="text-center">${this.description}</h4>
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-between">
-            <span>${this.bros} - <i onclick="app.memesController.upVote('${this.id}')" class="selectable" title="Upvote">👍</i></span>
-            <span>${this.hater} - <i onclick="app.memesController.downVote('${this.id}')" class="selectable" title="Downvote">👎</i></span>
+            <span>${this.bros} - <i onclick="app.memesController.bro('${this.id}')" class="selectable" title="Upvote">👍</i></span>
+            <span>${this.hater} - <i onclick="app.memesController.hater('${this.id}')" class="selectable" title="Downvote">👎</i></span>
             <span>
               <img
-                title="${this.creator.name}"
+                title="${this.creator.description}"
                 src="${this.creator.picture}"
-                alt="${this.creator.name}" class="img-fluid rounded picture">
+                alt="${this.creator.description}" class="img-fluid rounded picture">
             </span>
           </div>
         </div>
