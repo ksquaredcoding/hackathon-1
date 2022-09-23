@@ -24,7 +24,7 @@ BroSchema.virtual('meme', {
   ref: 'Meme'
 })
 
-export const CommentBro = new Schema(
+export const CommentBroSchema = new Schema(
   {
     commentId: { type: ObjectId, ref: 'Meme', required: true },
     commentBroId: { type: ObjectId, ref: 'Account', required: true }
@@ -32,14 +32,14 @@ export const CommentBro = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-CommentBro.virtual('comment', {
+CommentBroSchema.virtual('comment', {
   localField: 'commentId',
   foreignField: '_id',
   justOne: true,
   ref: 'Comment'
 })
 
-CommentBro.virtual('commentBro', {
+CommentBroSchema.virtual('commentBro', {
   localField: 'commentBroId',
   foreignField: '_id',
   justOne: true,

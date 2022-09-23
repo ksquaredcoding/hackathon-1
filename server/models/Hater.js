@@ -24,7 +24,7 @@ HaterSchema.virtual('meme', {
   ref: 'Meme'
 })
 
-export const CommentHater = new Schema(
+export const CommentHaterSchema = new Schema(
   {
     commentId: { type: ObjectId, ref: 'Meme', required: true },
     commentHaterId: { type: ObjectId, ref: 'Account', required: true }
@@ -32,14 +32,14 @@ export const CommentHater = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-CommentHater.virtual('comment', {
+CommentHaterSchema.virtual('comment', {
   localField: 'commentId',
   foreignField: '_id',
   justOne: true,
   ref: 'Comment'
 })
 
-CommentHater.virtual('commentHater', {
+CommentHaterSchema.virtual('commentHater', {
   localField: 'commentHaterId',
   foreignField: '_id',
   justOne: true,
