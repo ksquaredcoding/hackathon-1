@@ -1,14 +1,21 @@
+import { appState } from "../AppState.js";
 import { memesService } from "../Services/MemesService.js";
 import { getFormData } from "../Utils/FormHandler.js";
 import { Pop } from "../Utils/Pop.js";
+import { setHTML } from "../Utils/Writer.js";
 
 
-
+function _drawMemes() {
+  let template = ''
+  appState.memes.forEach(m => template += m.memeTemplate)
+  setHTML('memes', template)
+}
 
 
 export class MemesController {
   constructor() {
-
+    this.getMemes()
+    appState.on('memes', _drawMemes)
   }
 
   async addMeme() {

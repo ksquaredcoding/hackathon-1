@@ -2,11 +2,11 @@
 
 export class Meme {
   constructor(data) {
-    this.name = data.name
+    this.description = data.description
     this.image = data.image
     this.id = data.id
-    this.upVote = data.upVote || 0
-    this.downVote = data.downVote || 0
+    this.bros = data.bros || 0
+    this.hater = data.hater || 0
 
     // TODO need Creator data
 
@@ -22,14 +22,14 @@ export class Meme {
         onclick="app.memesController.getMemeById('${this.id}')"
         data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
           src="${this.image}"
-          alt="${this.name}" class="img-fluid rounded-top bird-img selectable" title="Peep the creeps">
+          alt="${this.description}" class="img-fluid rounded-top meme-img selectable" title="Peep the creeps">
         <div class="card-body">
-          <h4 class="text-center">${this.name}</h4>
+          <h4 class="text-center">${this.description}</h4>
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-between">
-            <span>${this.upVote} - <i onclick="app.memesController.upVote('${this.id}')" class="selectable" title="Upvote">👍</i></span>
-            <span>${this.downVote} - <i onclick="app.memesController.downVote('${this.id}')" class="selectable" title="Downvote">👎</i></span>
+            <span>${this.bros} - <i onclick="app.memesController.upVote('${this.id}')" class="selectable" title="Upvote">👍</i></span>
+            <span>${this.hater} - <i onclick="app.memesController.downVote('${this.id}')" class="selectable" title="Downvote">👎</i></span>
             <span>
               <img
                 title="${this.creator.name}"

@@ -37,9 +37,9 @@
   <main id="app">
     <div class="container-fluid">
       <div class="row p-4" id="memes">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="card">
-            <!-- Meme pic -->
+            Meme pic
             <img src="https://s3.amazonaws.com/rails-camp-tutorials/blog/programming+memes/programming-or-googling.jpg"
               alt="" class="img-fluid rounded-top">
             <div class="card-body">
@@ -47,7 +47,7 @@
             </div>
             <div class="card-footer">
               <div class="d-flex justify-content-between">
-                <!-- Logged in user Pic -->
+                Logged in user Pic
                 <span>
                   <img
                     src="https://s3.amazonaws.com/rails-camp-tutorials/blog/programming+memes/programming-or-googling.jpg"
@@ -56,7 +56,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="row sticky-bottom">
         <div class="col-12 d-flex justify-content-end p-3"> <button type="button"
@@ -68,7 +68,7 @@
   <footer class="container-fluid bg-dark text-light">
     <div class="row text-center">
       <div class="col">
-        <p><small>Made with 💖 by CodeWorks</small></p>
+        <p><small>Made with 💖 by Team TheMemeingOfLife</small></p>
       </div>
     </div>
   </footer>
@@ -82,10 +82,10 @@
         </div>
         <form onsubmit="app.memesController.addMeme()">
           <div class="modal-body">
-            <div class="form-floating mb-3"> <input type="text" class="form-control" id="name" name="name"
+            <div class="form-floating mb-3"> <input type="text" class="form-control" id="name" name="description"
                 placeholder="Meme Name"> <label for="name">What Do You Meme?</label> </div>
-            <div class="form-floating mb-3"> <input required type="url" class="form-control" id="img" name="img"
-                placeholder="Meme Image"> <label for="img">Post Your Meme</label> </div>
+            <div class="form-floating mb-3"> <input required type="url" class="form-control" id="image" name="image"
+                placeholder="Meme Image"> <label for="image">Post Your Meme</label> </div>
 
           </div>
           <div class="modal-footer"> <button type="button" class="btn btn-secondary"
