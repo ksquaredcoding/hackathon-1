@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const ObjectId = mongoose.Types.ObjectId
 
-export const HaterSchema = new Schema(
+export const BroSchema = new Schema(
   {
     memeId: { type: ObjectId, ref: 'Meme', required: true },
     broId: { type: ObjectId, ref: 'Account', required: true }
@@ -10,16 +10,38 @@ export const HaterSchema = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-HaterSchema.virtual('bro', {
+BroSchema.virtual('bro', {
   localField: 'broId',
   justOne: true,
   foreignField: '_id',
   ref: 'Account'
 })
 
-HaterSchema.virtual('meme', {
+BroSchema.virtual('meme', {
   localField: 'memeId',
   foreignField: '_id',
   justOne: true,
   ref: 'Meme'
+})
+
+export const CommentBro = new Schema(
+  {
+    commentId: { type: ObjectId, ref: 'Meme', required: true },
+    commentBroId: { type: ObjectId, ref: 'Account', required: true }
+  },
+  { timestamps: true, toJSON: { virtuals: true } }
+)
+
+CommentBro.virtual('comment', {
+  localField: 'commentId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Comment'
+})
+
+CommentBro.virtual('commentBro', {
+  localField: 'commentBroId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Account'
 })

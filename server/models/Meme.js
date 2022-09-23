@@ -5,7 +5,7 @@ const ObjectId = mongoose.Types.ObjectId
 export const MemeSchema = new Schema(
   {
     image: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String, required: true, maxlength: 100 },
     creatorId: { type: ObjectId, ref: 'Account', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
