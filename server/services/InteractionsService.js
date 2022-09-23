@@ -2,6 +2,29 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
 
 class InteractionsService {
+  removedHate(hateId, userInfo) {
+
+  }
+  removedBro(broId, userInfo) {
+
+  }
+
+  async deleteCommentBro(commentBroId, userInfo) {
+    const deletedBro = await dbContext.CommentBros.findById(commentBroId)
+    if (userInfo.id != deletedBro.commentBroId) { throw new BadRequest("Can't stop liking what isnt there") }
+    if (userInfo.id != deletedBro.commentBroId.toString()) {
+      throw new Forbidden("You didnt like this comment!!")
+    }
+  }
+  async deleteCommentHate(commentHateId, userInfo) {
+    const deletedHate = await dbContext.CommentHaters.findById(commentHateId)
+    if (!deletedHate) { throw new BadRequest("Can't Stop Hating what isnt there") }
+    if (userInfo.id != deletedHate.commentHaterId.toString()) {
+      throw new Forbidden("You didnt hate this comment!!")
+    }
+    await deletedHate.remove()
+    return deletedHate
+  }
   async broComment(formData) {
     const bro = await dbContext.CommentBros.create(formData)
     await bro.populate('comment')
