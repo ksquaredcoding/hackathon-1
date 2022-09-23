@@ -11,6 +11,7 @@ export class Meme {
     // TODO need Creator data
 
     this.creator = data.creator
+    this.creatorId = data.creatorId
   }
 
   get memeTemplate() {

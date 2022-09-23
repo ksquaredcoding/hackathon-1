@@ -58,7 +58,11 @@
           </div>
         </div>
       </div>
-    </div>
+      <div class="row sticky-bottom">
+        <div class="col-12 d-flex justify-content-end p-3"> <button type="button"
+            class="btn btn-primary fs-3 mdi mdi-plus-thick" data-bs-toggle="modal" data-bs-target="#memeModal">
+          </button>
+        </div>
 
   </main>
   <footer class="container-fluid bg-dark text-light">
@@ -68,6 +72,29 @@
       </div>
     </div>
   </footer>
+
+  <div class="modal fade" id="memeModal" tabindex="-1" aria-labelledby="memeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="memeModalLabel">Post Your Meme</h5> <button type="button" class="btn-close"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form onsubmit="app.memesController.addMeme()">
+          <div class="modal-body">
+            <div class="form-floating mb-3"> <input type="text" class="form-control" id="name" name="name"
+                placeholder="Meme Name"> <label for="name">What Do You Meme?</label> </div>
+            <div class="form-floating mb-3"> <input required type="url" class="form-control" id="img" name="img"
+                placeholder="Meme Image"> <label for="img">Post Your Meme</label> </div>
+
+          </div>
+          <div class="modal-footer"> <button type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">Close</button> <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/1.22/auth0-spa-js.production.js"></script>

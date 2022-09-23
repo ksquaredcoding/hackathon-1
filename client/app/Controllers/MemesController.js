@@ -1,4 +1,5 @@
 import { memesService } from "../Services/MemesService.js";
+import { getFormData } from "../Utils/FormHandler.js";
 import { Pop } from "../Utils/Pop.js";
 
 
@@ -12,7 +13,15 @@ export class MemesController {
 
   async addMeme() {
     try {
-      const meme = await memesService.addMemes()
+      // @ts-ignore
+      window.event.preventDefault()
+      // @ts-ignore
+      const form = window.event.target
+      const formData = getFormData(form)
+      const meme = await memesService.addMemes(formData)
+      // @ts-ignore
+      form.reset()
+      const modal = bootstrap.Modal.getOrCreateInstance('#memeModal')
     } catch (error) {
       console.error("[addMeme]", error);
       Pop.error(error)
@@ -48,17 +57,17 @@ export class MemesController {
   }
 
 
-  async upVoteMeme(id) {
+  async bro(id) {
     try {
-      const meme = await memesService.upVote(id)
+      const meme = await memesService.bro(id)
     } catch (error) {
       console.error("[Upvote]", error);
       Pop.error(error)
     }
   }
-  async downVoteMeme(id) {
+  async hater(id) {
     try {
-      const meme = await memesService.downVote(id)
+      const meme = await memesService.hater(id)
     } catch (error) {
       console.error("[DownVote]", error);
       Pop.error(error)
