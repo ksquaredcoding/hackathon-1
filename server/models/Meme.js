@@ -17,3 +17,17 @@ MemeSchema.virtual('creator', {
   justOne: true,
   ref: 'Account'
 })
+
+MemeSchema.virtual('haters', {
+  count: true,
+  ref: 'Hater',
+  localField: '_id',
+  foreignField: 'memeId'
+})
+
+MemeSchema.virtual('bros', {
+  count: true,
+  ref: 'Bro',
+  localField: '_id',
+  foreignField: 'memeId'
+})
