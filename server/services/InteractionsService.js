@@ -3,7 +3,8 @@ import { BadRequest, Forbidden } from '../utils/Errors'
 
 class InteractionsService {
   async getComments(query = {}) {
-    // const comments = await dbContext.find
+    const comments = await dbContext.Comments.find(query)
+      .populate('meme').populate('commentHaters').populate('commentBros')
   }
   async beABro(formData) {
     const bro = await dbContext.Bros.create(formData)
