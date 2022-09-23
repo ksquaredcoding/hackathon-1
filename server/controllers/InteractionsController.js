@@ -5,19 +5,60 @@ import { BadRequest } from "../utils/Errors.js";
 
 export class InteractionsController extends BaseController {
   constructor() {
-    super('/api/interactions')
+    super('/api/memes')
     this.router
       .get('/comments', this.getComments)
+      .get('/bros', this.getBros)
+      .get('/haters', this.getHaters)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('/haters', this.beHatin)
       .post('/bros', this.beABro)
+      .post('/haters', this.beHatin)
+      .delete('/haters/:hateId', this.removeHate)
+      .delete('/bros/:broId', this.removeBro)
+      // SECTION Comment Requests
       .post('/comments', this.addComment)
+      .delete('/comments/:commentId', this.deleteComment)
+      //  STUB Comment Hater&Bro Requests
       .post('/comments/commenthaters', this.hateComment)
       .post('/comments/commentbros', this.broComment)
-      .get('/haters', this.getHaters)
-      .get('/bros', this.getBros)
-      .delete('/comments/:commentId', this.deleteComment)
-      .delete('/comments/commenthaters')
+      .delete('/comments/commenthaters/:commentHateId', this.deleteCommentHate)
+      .delete('/comments/commentbros/:commentBroId', this.deleteCommentBro)
+
+  }
+
+  async removeHate(req, res, next) {
+    try {
+      const removedHate = await interactionsService.removedHate(req.params.hateId, req.userInfo)
+      res.send(removedHate)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async removeBro(req, res, next) {
+    try {
+      const removedBro = await interactionsService.removedBro(req.params.broId, req.userInfo)
+      res.send(removedBro)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async deleteCommentBro(req, res, next) {
+    try {
+      const deleteBro = await interactionsService.deleteCommentBro(req.params.commentBroId, req.userInfo)
+      res.send(deleteBro)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async deleteCommentHate(req, res, next) {
+    try {
+      const deleteHate = await interactionsService.deleteCommentHate(req.params.commentHateId, req.userInfo)
+      res.send(deleteHate)
+    } catch (error) {
+      next(error)
+    }
   }
   async broComment(req, res, next) {
     try {
