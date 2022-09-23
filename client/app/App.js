@@ -1,9 +1,11 @@
 import { AuthController } from './Controllers/AuthController.js';
+import { MemesController } from './Controllers/MemesController.js';
 import { ValuesController } from './Controllers/ValuesController.js';
 
 class App {
   authController = new AuthController();
-  valuesController = new ValuesController();
+
+  memesController = new MemesController()
 }
 
 // @ts-ignore
