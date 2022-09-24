@@ -21,8 +21,8 @@ class AppState extends EventEmitter {
 
   haters = 0
   bros = 0
-
-
+  /** @type {import('./Models/Meme').Meme[]} */
+  oldMemes = []
 
 }
 
