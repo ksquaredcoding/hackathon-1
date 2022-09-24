@@ -8,9 +8,10 @@ class CommentsService {
     throw new Error("Method not implemented.");
   }
   async addComment(memeId, formData) {
-    console.log('comment info', formData);
+    // console.log('comment info', formData);
+    // debugger
     formData.memeId = memeId
-    const res = await server.post(`api/interactions/memes/comments/?memeId=${memeId}`, formData)
+    const res = await server.post(`api/interactions/memes/comments`, formData)
 
     const newComment = new Comment(res.data)
     appState.comments = [newComment, ...appState.comments]

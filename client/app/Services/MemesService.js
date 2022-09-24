@@ -13,7 +13,7 @@ class MemesService {
   }
   async addMemes(formData) {
     const res = await server.post('api/memes', formData)
-    console.log(res.data);
+    // console.log(res.data);
     appState.memes = [new Meme(res.data), ...appState.memes]
   }
   async deleteMeme(id) {
@@ -30,16 +30,19 @@ class MemesService {
   async getActiveMeme(id) {
     const res = await server.get(`api/memes/${id}`)
     appState.activeMeme = new ActiveMeme(res.data)
-    console.log(appState.activeMeme);
+    // console.log(appState.activeMeme);
   }
   async hater(memeId) {
     Pop.success("You're a Hater")
     const res = await server.post(`api/interactions/memes/${memeId}/haters`)
-    console.log('hater post', res.data);
-    // appState.emit('memes')
+    // console.log('hater post', res.data);
+    const updatedMeme = appState.memes.find(m => m.id == memeId)
+    if (!updatedMeme) {
+      return "No meme found"
+    }
     // @ts-ignore
-    appState.haters = res.data
-    // console.log('appstate', appState.haters);
+    updatedMeme.haters++
+    appState.emit('memes')
   }
   async bro(memeId) {
     Pop.success("You're a Bro")

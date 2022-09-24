@@ -16,7 +16,7 @@ export class MemesController {
   constructor() {
     this.getMemes()
     appState.on('memes', _drawMemes)
-    appState.on('haters', this.getMemes)
+
     appState.on('bros', this.getMemes)
 
   }
@@ -78,6 +78,8 @@ export class MemesController {
   async hater(id) {
     try {
       await memesService.hater(id)
+      // @ts-ignore
+
     } catch (error) {
       console.error("[DownVote]", error);
       Pop.error(error)
