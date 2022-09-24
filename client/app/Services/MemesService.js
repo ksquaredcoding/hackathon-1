@@ -25,8 +25,12 @@ class MemesService {
   }
   async getActiveMeme(id) {
     const res = await server.get(`api/memes/${id}`)
+    const response = await server.get(`api/interactions/memes/comments?memeId=${id}`)
+    console.log(response.data);
     appState.activeMeme = new ActiveMeme(res.data)
-    // console.log(appState.activeMeme);
+    appState.comments = response.data.map(c => new Comment(c))
+    console.log(appState.comments);
+    console.log(appState.activeMeme);
   }
   async hater(memeId) {
     Pop.success("You're a Hater")
