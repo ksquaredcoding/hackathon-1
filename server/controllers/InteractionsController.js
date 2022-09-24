@@ -104,10 +104,7 @@ export class InteractionsController extends BaseController {
   }
   async getComments(req, res, next) {
     try {
-      if (!req.query.memeId) {
-        throw new BadRequest("You need a meme to see haters")
-      }
-      const comments = await interactionsService.getComments(req.query)
+      const comments = await interactionsService.getComments()
       res.send(comments)
     } catch (error) {
       next(error)

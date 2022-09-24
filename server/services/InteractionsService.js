@@ -65,8 +65,8 @@ class InteractionsService {
     await comment.populate('commenter', 'name')
     return comment
   }
-  async getComments(query = {}) {
-    const comments = await dbContext.Comments.find(query)
+  async getComments() {
+    const comments = await dbContext.Comments.find()
       .populate('memeComment').populate('commentHaters').populate('commentBros')
     return comments
   }
