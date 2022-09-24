@@ -7,7 +7,7 @@ export class MemesController extends BaseController {
     this.router
       .get('', this.getAllMemes)
       .get('/:memeId', this.getMemeById)
-      .get('/sort/freshmemes', this.memesByDate)
+      .get('/sort/oldmemes', this.memesByDate)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.makeMeme)
       .delete('/:memeId', this.deleteMeme)
