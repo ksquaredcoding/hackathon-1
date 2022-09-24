@@ -34,17 +34,13 @@ export class ActiveMeme extends Meme {
 
 
   get Comments() {
-
+    let comments = appState.comments.filter(c => c.memeId == this.id)
     let template = ''
-    this.getComments.forEach(c => template += c.CommentTemplate)
+    comments.forEach(c => template += c.CommentTemplate)
     console.log(template);
     return template
   }
 
-  get getComments() {
-    let comment = appState.comments.filter(c => c.memeId == this.id)
-    return comment
-  }
 
 
 

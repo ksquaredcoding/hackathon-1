@@ -24,7 +24,7 @@ export class CommentsController {
   constructor() {
     appState.on('activeMeme', _drawActiveMeme)
     appState.on('comments', _drawActiveMeme)
-
+    this.getAllComments()
   }
 
   async getCommentsById(memeId) {

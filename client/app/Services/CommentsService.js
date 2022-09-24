@@ -5,15 +5,18 @@ import { server } from "./AxiosService.js";
 
 class CommentsService {
   async getAllComments() {
-
+    const res = await server.get('api/interactions/memes/comments')
+    console.log(res.data, 'all comments');
+    appState.comments = res.data.map(c => new Comment(c))
+    console.log('appstate comments', appState.comments);
   }
   async getCommentsById(memeId) {
 
     // @ts-ignore
     appState.activeMeme = appState.memes.find(m => m.id == memeId) || null
     const res = await server.get('api/interactions/memes/comments', { params: { memeId } })
-    console.log(res.data);
-    appState.comments = res.data.map(c => new Comment(c))
+    console.log(res.data, 'comments by meme');
+    // appState.comments = res.data.map(c => new Comment(c))
   }
 
 
