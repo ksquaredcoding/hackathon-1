@@ -45,3 +45,6 @@ CommentBroSchema.virtual('commentBro', {
   justOne: true,
   ref: 'Account'
 })
+
+CommentBroSchema.index({ commentBroId: 1, commentId: 1 }, { unique: true })
+BroSchema.index({ broId: 1, memeId: 1 }, { unique: true })
