@@ -7,9 +7,18 @@ export class MemesController extends BaseController {
     this.router
       .get('', this.getAllMemes)
       .get('/:memeId', this.getMemeById)
+      .get('/sort/freshmemes', this.memesByDate)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.makeMeme)
       .delete('/:memeId', this.deleteMeme)
+  }
+  async memesByDate(req, res, next) {
+    try {
+      const memes = await memesService.memesByDate()
+      res.send(memes)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async deleteMeme(req, res, next) {
