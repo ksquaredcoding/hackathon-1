@@ -16,8 +16,8 @@ class AppState extends EventEmitter {
   /** @type {import('./Models/ActiveMeme').ActiveMeme|null} */
   activeMeme = null
 
-  /** @type {import('./Models/Comment').Comment|null} */
-  comments = null
+  /** @type {import('./Models/Comment').Comment[]} */
+  comments = []
 
   haters = 0
   bros = 0

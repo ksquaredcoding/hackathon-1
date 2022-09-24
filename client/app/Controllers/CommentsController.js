@@ -10,7 +10,12 @@ function _drawActiveMeme() {
   // if (appState.comments == null) { return }
   // setHTML('comments', appState.comments.CommentTemplate)
   // TODO draw +=template for comments
+  let template = ''
+  appState.comments.forEach(c => template += c.CommentTemplate)
+  setHTML('comments', template)
 }
+
+
 export class CommentsController {
   constructor() {
     appState.on('activeMeme', _drawActiveMeme)
