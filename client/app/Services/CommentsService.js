@@ -4,13 +4,24 @@ import { server } from "./AxiosService.js";
 
 
 class CommentsService {
-  deleteComment(id) {
-    throw new Error("Method not implemented.");
+  async getAllComments() {
+
   }
-  async addComment(memeId, formData) {
+  async getCommentsById(memeId) {
+
+    // @ts-ignore
+    appState.activeMeme = appState.memes.find(m => m.id == memeId) || null
+    const res = await server.get('api/interactions/memes/comments', { params: { memeId } })
+    console.log(res.data);
+    appState.comments = res.data.map(c => new Comment(c))
+  }
+
+
+
+  async addComment(formData) {
     // console.log('comment info', formData);
     // debugger
-    formData.memeId = memeId
+
     const res = await server.post(`api/interactions/memes/comments`, formData)
 
     const newComment = new Comment(res.data)

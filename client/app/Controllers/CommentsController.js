@@ -8,20 +8,42 @@ function _drawActiveMeme() {
   if (appState.activeMeme == null) { return }
   setHTML('activeMeme', appState.activeMeme.ActiveMemeTemplate)
 
-  let template = ''
-  appState.comments.forEach(c => template += c.CommentTemplate)
-  setHTML('comments', template)
-  console.log(template);
 }
+
+// function _drawComments() {
+
+//   let template = ''
+//   appState.comments.forEach(c => template += c.CommentTemplate)
+//   console.log(template);
+//   setHTML('comments', template)
+
+// }
 
 
 export class CommentsController {
   constructor() {
     appState.on('activeMeme', _drawActiveMeme)
+    appState.on('comments', _drawActiveMeme)
+
+  }
+
+  async getCommentsById(memeId) {
+    try {
+      await commentsService.getCommentsById(memeId)
+    } catch (error) {
+      console.error("[find commetns]", error);
+      Pop.error(error)
+    }
   }
 
 
-
+  async getAllComments() {
+    try {
+      const comments = commentsService.getAllComments()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   async addComment(memeId) {
     try {
@@ -31,8 +53,10 @@ export class CommentsController {
       const form = window.event.target
 
       const formData = getFormData(form)
-      // console.log(formData);
-      const comment = await commentsService.addComment(memeId, formData)
+      // @ts-ignore
+      formData.memeId = memeId
+      console.log(formData);
+      const comment = await commentsService.addComment(formData)
 
       // @ts-ignore
       form.reset()

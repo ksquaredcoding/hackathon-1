@@ -1,3 +1,5 @@
+import { appState } from "../AppState.js";
+import { setHTML } from "../Utils/Writer.js";
 import { Meme } from "./Meme.js";
 
 
@@ -16,7 +18,7 @@ export class ActiveMeme extends Meme {
       <img class="img-fluid rounded" src="${this.image}" alt="">
     </div>
     <div class="col-6">
-      <div id="comments"></div>
+      <div>${this.Comments}</div>
         <form onsubmit="app.commentsController.addComment('${this.id}')">
           <div class="form-floating mb-3"> <input type="text" class="form-control" id="contents"
           name="contents" placeholder="Comment"> <label for="contents">Add spicy comment...</label>
@@ -30,6 +32,19 @@ export class ActiveMeme extends Meme {
   `
   }
 
+
+  get Comments() {
+
+    let template = ''
+    this.getComments.forEach(c => template += c.CommentTemplate)
+    console.log(template);
+    return template
+  }
+
+  get getComments() {
+    let comment = appState.comments.filter(c => c.memeId == this.id)
+    return comment
+  }
 
 
 
