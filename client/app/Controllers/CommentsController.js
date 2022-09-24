@@ -7,18 +7,7 @@ import { setHTML } from "../Utils/Writer.js";
 function _drawActiveMeme() {
   if (appState.activeMeme == null) { return }
   setHTML('activeMeme', appState.activeMeme.ActiveMemeTemplate)
-
 }
-
-// function _drawComments() {
-
-//   let template = ''
-//   appState.comments.forEach(c => template += c.CommentTemplate)
-//   console.log(template);
-//   setHTML('comments', template)
-
-// }
-
 
 export class CommentsController {
   constructor() {

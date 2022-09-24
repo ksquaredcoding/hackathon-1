@@ -18,4 +18,3 @@ export class Comment {
   }
 
 }
-  // <img src="${this.creator.picture}" class="img-fluid rounded picture" alt="">
