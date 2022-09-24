@@ -85,5 +85,15 @@ export class MemesController {
       Pop.error(error)
     }
   }
-
+  async getOldMemes() {
+    try {
+      const memes = await memesService.getOldMemes()
+      let template = ''
+      appState.oldMemes.forEach(m => template += m.memeTemplate)
+      setHTML('memes', template)
+    } catch (error) {
+      console.error("[GetOldMeme]", error);
+      Pop.error(error)
+    }
+  }
 }

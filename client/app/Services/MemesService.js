@@ -7,6 +7,10 @@ import { server } from "./AxiosService.js";
 
 
 class MemesService {
+  async getOldMemes() {
+    const res = await server.get('api/memes/sort/oldmemes')
+    appState.oldMemes = res.data.map(m => new Meme(m))
+  }
   async addMemes(formData) {
     const res = await server.post('api/memes', formData)
     // console.log(res.data);

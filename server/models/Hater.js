@@ -45,3 +45,6 @@ CommentHaterSchema.virtual('commentHater', {
   justOne: true,
   ref: 'Account'
 })
+
+CommentHaterSchema.index({ commentHaterId: 1, commentId: 1 }, { unique: true })
+HaterSchema.index({ haterId: 1, memeId: 1 }, { unique: true })
