@@ -22,7 +22,7 @@ class MemesService {
   }
 
   async memesByDate() {
-    const sortedMemes = await (await dbContext.Memes.find().sort({ createdAt: 1 })).slice(0)
+    const sortedMemes = await dbContext.Memes.find().sort({ createdAt: -1 }).slice(0)
     return sortedMemes
   }
 
