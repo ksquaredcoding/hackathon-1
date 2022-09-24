@@ -7,12 +7,11 @@ import { setHTML } from "../Utils/Writer.js";
 function _drawActiveMeme() {
   if (appState.activeMeme == null) { return }
   setHTML('activeMeme', appState.activeMeme.ActiveMemeTemplate)
-  // if (appState.comments == null) { return }
-  // setHTML('comments', appState.comments.CommentTemplate)
-  // TODO draw +=template for comments
+
   let template = ''
   appState.comments.forEach(c => template += c.CommentTemplate)
   setHTML('comments', template)
+  console.log(template);
 }
 
 
@@ -32,6 +31,7 @@ export class CommentsController {
       const form = window.event.target
 
       const formData = getFormData(form)
+      // console.log(formData);
       const comment = await commentsService.addComment(memeId, formData)
 
       // @ts-ignore
