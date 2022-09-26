@@ -1,9 +1,17 @@
 import { appState } from "../AppState.js";
 import { Comment } from "../Models/Comment.js";
+import { Pop } from "../Utils/Pop.js";
 import { server } from "./AxiosService.js";
 
 
 class CommentsService {
+  async deleteComment(id) {
+    if (await Pop.confirm("Are you sure?") == true) {
+
+      await server.delete(`api/comments/${id}`)
+      appState.comments = appState.comments.filter(c => c.id != id)
+    }
+  }
   async getAllComments() {
     const res = await server.get('api/interactions/memes/comments')
     console.log(res.data, 'all comments');

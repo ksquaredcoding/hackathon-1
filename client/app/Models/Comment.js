@@ -7,6 +7,7 @@ export class Comment {
     this.contents = data.contents
     this.creator = data.creator
     this.memeId = data.memeId
+    this.id = data.id
   }
 
   get CommentTemplate() {
